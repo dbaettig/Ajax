@@ -1,5 +1,60 @@
+body{
+    background-color: white;
+}
+
+
 .wrapper{
     text-align: center;
-    margin-top:300px;
+    margin:50px;
+
 }
+
+#infoElement{
+display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top:50px;
+    
+}
+
+.films{
+    margin:20px;
+    width:25%;
+    background: grey;
+    
+    
+}
+.category{
+    display:flex;
+    justify-content: center;
+    margin-top:20px;
+}
+button{
+ width:60%;
+    padding: 7px 0px;
+    background-color:white;
+    color:black;
+    font-size:0.8em;
+}
+
+#addButton{
+    width:10%;
+    padding:0px;
+    
+}
+
+img{
+    width:40%;
+    padding:10px;
+    opacity: 0.5;
+ 
+}
+
+.logo{
+
+    height:100vh;
+}
+
+
+
 

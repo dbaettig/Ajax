@@ -11,8 +11,11 @@ const shortFilmCompetitionButton = document.getElementById('shortFilmCompetition
 const spotlightButton = document.getElementById('spotlight');
 const twilightZoneButton = document.getElementById('twilightZone');
 
+const buttons = document.querySelectorAll('button');
+console.log(buttons);
 let allFilms = [];
 let allSections = [];
+
 
 fetchFilms();
 
@@ -26,7 +29,7 @@ function fetchFilms() {
         .then(function (films) {
             displayFilms(films);
             allFilms = films;
-        console.log(films)
+            console.log(films)
 
         })
 
@@ -35,6 +38,7 @@ function fetchFilms() {
         })
 }
 
+// ------- SHOWS ALL MOVIES --------//
 
 function displayFilms(films) {
 
@@ -56,17 +60,46 @@ function displayFilms(films) {
 
 }
 
-competitionButton.addEventListener('click', function () {
-    let info = " ";
-    var mySections = allFilms.filter(function (each) {
-        return each.sectionName == "Competition";
 
-    });
-    console.log(mySections);
-    
-    for (var i = 0; i < mySections.length; i++) {
+// --------- SHOWS MOVIES IN SECTION COMPETITION ------//
+
+competitionButton.addEventListener('click', function () {
+let info = " ";
+var section = 'Competition';
+var mySections = allFilms.filter(function (each) {
+    return each.sectionName == section;
+});
+for (var i = 0; i < mySections.length; i++) {
 
     info += `
+
+        <div class="films">
+            <img src = ${mySections[i].filmPreviewImage}>
+            <h3> ${mySections[i].filmName} </h3>
+            <p> ${mySections[i].filmDirector} </p> 
+            <p> ${mySections[i].sectionName} </p>
+
+        </div>
+        `;
+
+    infoElement.innerHTML = info;
+}
+    })
+
+
+
+// --------- SHOWS MOVIES IN SECTION TWILIGHT ZONE ------//
+
+twilightZoneButton.addEventListener('click', function () {
+    let info = " ";
+    var section = 'Twilight Zone';
+    var mySections = allFilms.filter(function (each) {
+        return each.sectionName == section;
+
+    });
+    for (var i = 0; i < mySections.length; i++) {
+
+        info += `
 
         <div class="films">
             
@@ -76,35 +109,62 @@ competitionButton.addEventListener('click', function () {
 
         </div>
         `;
-        
-    infoElement.innerHTML = info;
+
+        infoElement.innerHTML = info;
+    }
+})
+
+
+// --------- SHOWS MOVIES IN SECTION DOCUMANIA ------//
+
+documaniaButton.addEventListener('click', function () {
+    let info = " ";
+    var section = 'Documania';
+    var mySections = allFilms.filter(function (each) {
+    return each.sectionName == section;
+
+     });
+    for (var i = 0; i < mySections.length; i++) {
+
+    info += `
+
+     <div class="films">
+            
+        <h3> ${mySections[i].filmName} </h3>
+        <p> ${mySections[i].filmDirector} </p> 
+        <p> ${mySections[i].sectionName} </p>
+
+    </div>
+    `;
+
+         infoElement.innerHTML = info;
     }
 
 })
 
+// --------- SHOWS MOVIES IN SECTION American Indie ------//
 
-//input.addEventListener('change', function () {
-//
-//        const inputValue = input.value;
-//        const li = document.createElement('li')
-//        li.innerText = input.value
+americanIndieButton.addEventListener('click', function () {
+    let info = " ";
+    var section = 'American Independents';
+    var mySections = allFilms.filter(function (each) {
+    return each.sectionName == section;
 
-//
-//                    console.log(allFilms[i].filmName);
-//                    console.log(allFilms[i].filmDirector);
-//                    console.log(allFilms[i].sectionName);
+     });
+    for (var i = 0; i < mySections.length; i++) {
 
-//                   info += `
-//        <div class="films">
-//            
-//            <h3> ${allFilms[i].filmName} </h3>
-//            <p> ${allFilms[i].filmDirector} </p> 
-//            <p> ${allFilms[i].sectionName} </p>
-//
-//        </div>
-//        `;
-//                    infoElement.innerHTML = info;
-//                }
+    info += `
 
-//            }
-//        })
+     <div class="films">
+            
+        <h3> ${mySections[i].filmName} </h3>
+        <p> ${mySections[i].filmDirector} </p> 
+        <p> ${mySections[i].sectionName} </p>
+
+    </div>
+    `;
+
+         infoElement.innerHTML = info;
+    }
+
+})
