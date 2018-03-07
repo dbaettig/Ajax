@@ -1,18 +1,7 @@
 const infoElement = document.getElementById('infoElement');
 const input = document.getElementById('input');
+const category = document.querySelector('#category');
 
-const competitionButton = document.getElementById('competition');
-const americanIndieButton = document.getElementById('americanIndependents');
-const documaniaButton = document.getElementById('documania');
-const iconsButton = document.getElementById('icons');
-const impactButton = document.getElementById('impact');
-const openZoneButton = document.getElementById('openZone');
-const shortFilmCompetitionButton = document.getElementById('shortFilmCompetition');
-const spotlightButton = document.getElementById('spotlight');
-const twilightZoneButton = document.getElementById('twilightZone');
-
-const buttons = document.querySelectorAll('button');
-console.log(buttons);
 let allFilms = [];
 let allSections = [];
 
@@ -38,6 +27,7 @@ function fetchFilms() {
         })
 }
 
+
 // ------- SHOWS ALL MOVIES --------//
 
 function displayFilms(films) {
@@ -59,22 +49,54 @@ function displayFilms(films) {
     }
 
 }
+ 
+//------ EVENTLISTNER FOR ALL CATEGORY BUTTONS -----//
+category.addEventListener('click', getSection);
 
 
-// --------- SHOWS MOVIES IN SECTION COMPETITION ------//
-
-competitionButton.addEventListener('click', function () {
-let info = " ";
-var section = 'Competition';
-var mySections = allFilms.filter(function (each) {
+function getSection(section) {
+    if (section.target !== section.currentTarget) {
+        var clickedSection = section.target.id;
+    }
+    let info = " ";
+    
+    if(clickedSection == 'americanIndependents'){
+    var section = 'American Independents';
+        
+    }else if(clickedSection == 'competition'){
+    var section = 'Competition';
+        
+    }else if(clickedSection == 'documania'){
+        var section = 'Documania';
+        
+    }else if(clickedSection == 'icons'){
+    var section = 'Icons';
+        
+    }else if(clickedSection == 'impact'){
+    var section = 'Impact';
+        
+    }else if(clickedSection == 'openZone'){
+    var section = 'Open Zone';
+        
+    }else if(clickedSection == 'shortFilmCompetition'){
+    var section = 'Short Film Competition';
+        
+    }else if(clickedSection == 'spotlight'){
+    var section = 'Spotlight';
+        
+    }else if(clickedSection == 'twilightZone'){
+    var section = 'Twilight Zone';
+    }
+    var mySections = allFilms.filter(function (each) {
     return each.sectionName == section;
 });
+    
 for (var i = 0; i < mySections.length; i++) {
 
     info += `
 
         <div class="films">
-            <img src = ${mySections[i].filmPreviewImage}>
+            
             <h3> ${mySections[i].filmName} </h3>
             <p> ${mySections[i].filmDirector} </p> 
             <p> ${mySections[i].sectionName} </p>
@@ -84,87 +106,6 @@ for (var i = 0; i < mySections.length; i++) {
 
     infoElement.innerHTML = info;
 }
-    })
-
-
-
-// --------- SHOWS MOVIES IN SECTION TWILIGHT ZONE ------//
-
-twilightZoneButton.addEventListener('click', function () {
-    let info = " ";
-    var section = 'Twilight Zone';
-    var mySections = allFilms.filter(function (each) {
-        return each.sectionName == section;
-
-    });
-    for (var i = 0; i < mySections.length; i++) {
-
-        info += `
-
-        <div class="films">
-            
-            <h3> ${mySections[i].filmName} </h3>
-            <p> ${mySections[i].filmDirector} </p> 
-            <p> ${mySections[i].sectionName} </p>
-
-        </div>
-        `;
-
-        infoElement.innerHTML = info;
-    }
-})
-
-
-// --------- SHOWS MOVIES IN SECTION DOCUMANIA ------//
-
-documaniaButton.addEventListener('click', function () {
-    let info = " ";
-    var section = 'Documania';
-    var mySections = allFilms.filter(function (each) {
-    return each.sectionName == section;
-
-     });
-    for (var i = 0; i < mySections.length; i++) {
-
-    info += `
-
-     <div class="films">
-            
-        <h3> ${mySections[i].filmName} </h3>
-        <p> ${mySections[i].filmDirector} </p> 
-        <p> ${mySections[i].sectionName} </p>
-
-    </div>
-    `;
-
-         infoElement.innerHTML = info;
     }
 
-})
 
-// --------- SHOWS MOVIES IN SECTION American Indie ------//
-
-americanIndieButton.addEventListener('click', function () {
-    let info = " ";
-    var section = 'American Independents';
-    var mySections = allFilms.filter(function (each) {
-    return each.sectionName == section;
-
-     });
-    for (var i = 0; i < mySections.length; i++) {
-
-    info += `
-
-     <div class="films">
-            
-        <h3> ${mySections[i].filmName} </h3>
-        <p> ${mySections[i].filmDirector} </p> 
-        <p> ${mySections[i].sectionName} </p>
-
-    </div>
-    `;
-
-         infoElement.innerHTML = info;
-    }
-
-})
