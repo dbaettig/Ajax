@@ -2,11 +2,11 @@ const infoElement = document.getElementById('infoElement');
 const input = document.getElementById('input');
 const category = document.querySelector('#category');
 const searchButton = document.getElementById('searchButton');
-
 let allFilms = [];
 
 
 fetchFilms();
+
 
 function fetchFilms() {
 
@@ -18,7 +18,7 @@ function fetchFilms() {
         .then(function (films) {
             displayFilms(films);
             allFilms = films;
-      
+
 
         })
 
@@ -28,13 +28,15 @@ function fetchFilms() {
 }
 
 
+
+
 // ------- SHOWS ALL MOVIES --------//
 
 function displayFilms(films) {
 
     let info = '';
     for (var i = 0; i < films.length; i++) {
-
+        
         // const IMAGESIZE = (320 x 180);
         info += `
         <div class="films">
@@ -46,23 +48,22 @@ function displayFilms(films) {
         </div>
         `;
         infoElement.innerHTML = info;
-    }
-
-}
-
-searchButton.addEventListener('click', function(){
-     
-    const inputValue = input.value;  
+ }
     
-    let info = ' ';
-    for (var i = 0; i < allFilms.length; i++) {
-         
-         
-    if(inputValue == allFilms[i].filmName || films[i].filmName){ 
-        
-     
-            
- info += `
+        }
+
+
+
+ searchButton.addEventListener('click', function(){
+     let info = '';
+     const inputValue = input.value;
+    
+     for (var i = 0; i < allFilms.length; i++) {    
+       
+      
+         if(inputValue == allFilms[i].filmId){
+          // const IMAGESIZE = (320 x 180);
+        info += `
         <div class="films">
             
             <h3> ${allFilms[i].filmName} </h3>
@@ -72,12 +73,16 @@ searchButton.addEventListener('click', function(){
         </div>
         `;
         infoElement.innerHTML = info;
-    }
+         }
      }
-     });
+                               
+});
  
+    
 
- 
+   
+
+
 //------ EVENTLISTNER FOR ALL CATEGORY BUTTONS -----//
 category.addEventListener('click', getSection);
 
@@ -87,41 +92,41 @@ function getSection(section) {
         var clickedSection = section.target.id;
     }
     let info = " ";
-    
-    if(clickedSection == 'americanIndependents'){
-    var section = 'American Independents';
-        
-    }else if(clickedSection == 'competition'){
-    var section = 'Competition';
-        
-    }else if(clickedSection == 'documania'){
+
+    if (clickedSection == 'americanIndependents') {
+        var section = 'American Independents';
+
+    } else if (clickedSection == 'competition') {
+        var section = 'Competition';
+
+    } else if (clickedSection == 'documania') {
         var section = 'Documania';
-        
-    }else if(clickedSection == 'icons'){
-    var section = 'Icons';
-        
-    }else if(clickedSection == 'impact'){
-    var section = 'Impact';
-        
-    }else if(clickedSection == 'openZone'){
-    var section = 'Open Zone';
-        
-    }else if(clickedSection == 'shortFilmCompetition'){
-    var section = 'Short Film Competition';
-        
-    }else if(clickedSection == 'spotlight'){
-    var section = 'Spotlight';
-        
-    }else if(clickedSection == 'twilightZone'){
-    var section = 'Twilight Zone';
+
+    } else if (clickedSection == 'icons') {
+        var section = 'Icons';
+
+    } else if (clickedSection == 'impact') {
+        var section = 'Impact';
+
+    } else if (clickedSection == 'openZone') {
+        var section = 'Open Zone';
+
+    } else if (clickedSection == 'shortFilmCompetition') {
+        var section = 'Short Film Competition';
+
+    } else if (clickedSection == 'spotlight') {
+        var section = 'Spotlight';
+
+    } else if (clickedSection == 'twilightZone') {
+        var section = 'Twilight Zone';
     }
     var mySections = allFilms.filter(function (each) {
-    return each.sectionName == section;
-});
-    
-for (var i = 0; i < mySections.length; i++) {
+        return each.sectionName == section;
+    });
 
-    info += `
+    for (var i = 0; i < mySections.length; i++) {
+
+        info += `
 
         <div class="films">
             
@@ -132,8 +137,6 @@ for (var i = 0; i < mySections.length; i++) {
         </div>
         `;
 
-    infoElement.innerHTML = info;
-}
+        infoElement.innerHTML = info;
     }
-
-
+}
