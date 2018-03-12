@@ -1,9 +1,9 @@
 const infoElement = document.getElementById('infoElement');
 const input = document.getElementById('input');
 const category = document.querySelector('#category');
+const searchButton = document.getElementById('searchButton');
 
 let allFilms = [];
-let allSections = [];
 
 
 fetchFilms();
@@ -18,7 +18,7 @@ function fetchFilms() {
         .then(function (films) {
             displayFilms(films);
             allFilms = films;
-            console.log(films)
+      
 
         })
 
@@ -49,6 +49,34 @@ function displayFilms(films) {
     }
 
 }
+
+searchButton.addEventListener('click', function(){
+     
+    const inputValue = input.value;  
+    
+    let info = ' ';
+    for (var i = 0; i < allFilms.length; i++) {
+         
+         
+    if(inputValue == allFilms[i].filmName || films[i].filmName){ 
+        
+     
+            
+ info += `
+        <div class="films">
+            
+            <h3> ${allFilms[i].filmName} </h3>
+            <p> ${allFilms[i].filmDirector} </p> 
+            <p> ${allFilms[i].sectionName} </p>
+
+        </div>
+        `;
+        infoElement.innerHTML = info;
+    }
+     }
+     });
+ 
+
  
 //------ EVENTLISTNER FOR ALL CATEGORY BUTTONS -----//
 category.addEventListener('click', getSection);
