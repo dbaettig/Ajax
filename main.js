@@ -51,9 +51,7 @@ function fetchFilmDesc(id) {
         <h3> ${filmDesc.sectionName} </h3>
         <h4> ${filmDesc.filmDirector} </h4>
         <h4> ${filmDesc.filmCountry_en} </h4>
-        <iframe width="420" height="315"
-        src="https://www.youtube.com/embed/${filmDesc.filmYoutubeId}">
-        </iframe>
+        <h4> <a href ="https://www.youtube.com/watch?v=${filmDesc.filmYoutubeId}">Trailer</a></h4>
         
         <p> ${filmDesc.filmDescription_en} </p> 
            `
