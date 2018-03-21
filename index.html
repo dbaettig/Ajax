@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700|Josefin+Sans|Lato" rel="stylesheet">
 </head>
 
 <body>
@@ -19,28 +20,38 @@
 
         </div>
 
-        <input id="input" type="text" placeholder="film title">
-        <button id="searchButton">Search</button>
 
-        <div id="category">
 
-            <button id="americanIndependents">American Independents</button>
-            <button id="competition">Competition</button>
-            <button id="documania">Documania</button>
-            <button id="icons">Icons</button>
-            <button id="impact">Impact</button>
-            <button id="openZone">Open Zone</button>
-            <button id="shortFilmCompetition">Short Film Competition</button>
-            <button id="spotlight">Spotlight</button>
-            <button id="twilightZone">Twilight Zone</button>
+        <div class="main">
+
+
+            <input id="input" type="text" placeholder="film title">
+            <button id="searchButton">Search</button>
+
+            <div id="category">
+                <button id="showAll">Show All</button>
+                <button id="americanIndependents">American Independents</button>
+                <button id="competition">Competition</button>
+                <button id="documania">Documania</button>
+                <button id="icons">Icons</button>
+                <button id="impact">Impact</button>
+                <button id="openZone">Open Zone</button>
+                <button id="shortFilmCompetition">Short Film Competition</button>
+                <button id="spotlight">Spotlight</button>
+                <button id="twilightZone">Twilight Zone</button>
+
+            </div>
+
+            <div id="infoElement">
+
+                <div class="bounce">
+                    <img src="images/popcorn.svg">
+
+                </div>
+            </div>
 
         </div>
-        <div id="infoElement">
-        <div class ="films"></div>
-
     </div>
-    </div>
-    
     <script src="main.js"></script>
 </body>
 

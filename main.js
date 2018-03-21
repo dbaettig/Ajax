@@ -1,13 +1,11 @@
 const infoElement = document.getElementById('infoElement');
 const input = document.getElementById('input');
 const category = document.querySelector('#category');
-const searchButton = document.getElementById('searchButton');
-
-
+const showAllButton = document.getElementById('showAll');
 
 let allFilms = [];
 let allFilmDesc = [];
-let id = 12101;
+let id = " ";
 
 
 fetchFilms();
@@ -23,7 +21,6 @@ function fetchFilms() {
         .then(function (films) {
             displayFilms(films);
             allFilms = films;
-            //console.log(films);
 
 
         })
@@ -34,9 +31,7 @@ function fetchFilms() {
 }
 
 
-fetchFilmDesc();
-
-function fetchFilmDesc() {
+function fetchFilmDesc(id) {
 
     fetch(`https://cors-anywhere.herokuapp.com/http://api.stockholmfilmfestival.se/v1/films/film/film_id/${id}/festival_id/29/format/json/API-Key/70kbAllS0oDsaI9ho5oaRL3Ey7CdqSdkRB0Pmihk`)
 
@@ -47,9 +42,24 @@ function fetchFilmDesc() {
         .then(function (filmDesc) {
             displayFilmDesc(filmDesc);
             allFilmDesc = filmDesc;
-            //console.log(filmDesc);
 
+            let info = " ";
+            info +=
 
+    ` <div class="filmDescription" id = "${filmDesc.filmId}">
+        <h2> ${filmDesc.filmName} </h2>
+        <h3> ${filmDesc.sectionName} </h3>
+        <h4> ${filmDesc.filmDirector} </h4>
+        <h4> ${filmDesc.filmCountry_en} </h4>
+        <iframe width="420" height="315"
+        src="https://www.youtube.com/embed/${filmDesc.filmYoutubeId}">
+        </iframe>
+        
+        <p> ${filmDesc.filmDescription_en} </p> 
+           `
+        ;
+        
+        infoElement.innerHTML = info;
 
         })
 
@@ -59,68 +69,68 @@ function fetchFilmDesc() {
 }
 
 
+function displayFilmDesc(filmDesc) {
+
+}
 
 
 // ------- SHOWS ALL MOVIES --------//
-//
-//function displayFilmDesc(filmDesc) {
-//let id = filmDesc.filmId;
-//    let info = '';
-//   for (var i = 0; i < filmDesc.length; i++) {
-//    
-//    
-//    info +=
-//        console.log(filmDesc.filmId);
-//        ` <div class ="films">
-//            <h3> ${filmDesc.filmName} </h3>
-//            <p> ${filmDesc.filmDirector} </p>
-//            <p> ${filmDesc.filmId} </p>
-//            <p> ${filmDesc.sectionName} </p>  
-//        </div>
-//    `
-//
-//    ;
-//
-//    infoElement.innerHTML = info;
-//
-//
-//}
-//
-//    }
 
-
-function displayFilms(films) {
+function displayFilms(allFilms) {
 
     let info = '';
-    for (var i = 0; i < films.length; i++) {
-        let id = films[i].filmId;
-
-        // console.log(films[i].filmId)
-
-
+    for (var i = 0; i < allFilms.length; i++) {
+        let id = allFilms[i].filmId;
+        var str = "IMAGESIZE";
+        var res = str.replace("IMAGESIZE", "320x457");
+        //        <img src = "${allFilms[i].filmPosterImage}">
         info +=
 
-            ` <div class ="films">
-            <h3> ${films[i].filmName} </h3>
-            <p> ${films[i].filmDirector} </p>
-            <p> ${films[i].filmId} </p>
-            <p> ${films[i].sectionName} </p>  
-        </div>
-    `
-
+        ` <div class="films" id = "${allFilms[i].filmId}">
+            <h3> ${allFilms[i].filmName} </h3>
+            <p> Director: ${allFilms[i].filmDirector} </p>
+            <p> Section: ${allFilms[i].sectionName} </p> 
+        </div> `
+        
         ;
 
         infoElement.innerHTML = info;
-
 
     }
 
 
 }
 
+// -----SHOW ALL BUTTON GOES BACK TO SHOW ALL MOVIES -----//
+
+
+showAllButton.addEventListener('click', function () {
+
+    let info = '';
+    for (var i = 0; i < allFilms.length; i++) {
+
+        info +=
+
+            ` <div class="films" id = "${allFilms[i].filmId}">
+
+            <h3> ${allFilms[i].filmName} </h3>
+            <p> Director: ${allFilms[i].filmDirector} </p>
+            <p> Section: ${allFilms[i].sectionName} </p>
+        </div>
+       
+    `;
+
+        infoElement.innerHTML = info;
+
+    }
+
+});
+
+
 // ----- SEARCH INPUT FOR MOVIE TITLE ---- //
 
 searchButton.addEventListener('click', function () {
+    const searchButton = document.getElementById('searchButton');
     let info = '';
     const inputValue = input.value;
     for (var i = 0; i < allFilms.length; i++) {
@@ -129,12 +139,12 @@ searchButton.addEventListener('click', function () {
             allFilms[i].filmName.toUpperCase().split(' ').join('')) {
 
             info += `
-        <div class="films">
+        <div class="films" id = "${allFilms[i].filmId}">
             
             <h3> ${allFilms[i].filmName} </h3>
-            <p> ${allFilms[i].filmDirector} </p> 
-            <p> ${allFilms[i].sectionName} </p>
-
+            <p> Director: ${allFilms[i].filmDirector} </p> 
+            <p> Section: ${allFilms[i].sectionName} </p>
+   
         </div>
         `;
             infoElement.innerHTML = info;
@@ -145,7 +155,8 @@ searchButton.addEventListener('click', function () {
 
 
 
-//------ EVENTLISTNER FOR ALL CATEGORY BUTTONS -----//
+
+//------ EVENTLISTENER FOR ALL CATEGORY BUTTONS -----//
 
 category.addEventListener('click', getSection);
 
@@ -191,11 +202,11 @@ function getSection(section) {
 
         info += `
 
-        <div class="films">
+        <div class="films" id = "${mySections[i].filmId}">
             
             <h3> ${mySections[i].filmName} </h3>
-            <p> ${mySections[i].filmDirector} </p> 
-            <p> ${mySections[i].sectionName} </p>
+            <p> Director: ${mySections[i].filmDirector} </p> 
+            <p> Section: ${mySections[i].sectionName} </p>
           
 
         </div>
@@ -207,26 +218,17 @@ function getSection(section) {
 
 
 
-infoElement.addEventListener('click', displayFilmDesc);
 
-function displayFilmDesc(filmDesc) {
-    
-    if (filmDesc.target !== filmDesc.currentTarget) {
-        var clickedDiv = filmDesc.target.innerHTML;
+// ----- EVENTLISTENER FOR MORE INFO ON MOVIES ------//
 
-        console.log(clickedDiv);
 
-        let info = " ";
+infoElement.addEventListener('click', function (div) {
 
-        info +=
-            `  <div class="films">
+    if (div.target.className == "films") {
+        var replacedId = div.target.id;
 
-            ${clickedDiv}
-            <p> ${allFilmDesc.filmDescription_en} </p> 
-
- </div>
- `;
-        infoElement.innerHTML = info;
+        fetchFilmDesc(replacedId)
 
     }
-}
+
+})
