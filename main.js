@@ -21,7 +21,7 @@ function fetchFilms() {
         .then(function (films) {
             displayFilms(films);
             allFilms = films;
-
+    
         })
 
         .catch(function (error) {
@@ -56,6 +56,7 @@ function fetchFilmDesc(id) {
          </div> `
 
             ;
+        
 
             infoElement.innerHTML = info;
 
@@ -79,11 +80,11 @@ function displayFilms(allFilms) {
     let info = '';
     for (var i = 0; i < allFilms.length; i++) {
         let id = allFilms[i].filmId;
-
+       
         info +=
             `
          <div class="films" id = "${allFilms[i].filmId}">
-            <img src = "http://www.stockholmfilmfestival.se/sites/default/files/styles/600x857/public/film_images/2017/${allFilms[i].filmName.toLowerCase().split(' ').join('').replace(/[.,:!´]/g, '')}.jpg">
+            <img src="${allFilms[i].filmPosterImage.replace('[IMAGESIZE]', '600x857')}">
             <h3> ${allFilms[i].filmName} </h3>
             <p> Director: ${allFilms[i].filmDirector} </p>
             <p> Section: ${allFilms[i].sectionName} </p> 
@@ -107,7 +108,7 @@ showAllButton.addEventListener('click', function () {
 
             `
          <div class="films" id = "${allFilms[i].filmId}">
-             <img src = "http://www.stockholmfilmfestival.se/sites/default/files/styles/600x857/public/film_images/2017/${allFilms[i].filmName.toLowerCase().split(' ').join('').replace(/[.,:!]/g, '')}.jpg">
+            <img src="${allFilms[i].filmPosterImage.replace('[IMAGESIZE]', '600x857')}">
             <h3> ${allFilms[i].filmName} </h3>
             <p> Director: ${allFilms[i].filmDirector} </p>
             <p> Section: ${allFilms[i].sectionName} </p>
@@ -147,7 +148,7 @@ function searchFilm() {
 
             info += `
         <div class="films" id = "${allFilms[i].filmId}">
-            <img src = "http://www.stockholmfilmfestival.se/sites/default/files/styles/600x857/public/film_images/2017/${allFilms[i].filmName.toLowerCase().split(' ').join('').replace(/[.,:!]/g, '')}.jpg">
+            <img src="${allFilms[i].filmPosterImage.replace('[IMAGESIZE]', '600x857')}">
             <h3> ${allFilms[i].filmName} </h3>
             <p> Director: ${allFilms[i].filmDirector} </p> 
             <p> Section: ${allFilms[i].sectionName} </p>
@@ -209,7 +210,7 @@ function getSection(section) {
         info += `
 
         <div class="films" id = "${mySections[i].filmId}">
-            <img src = "http://www.stockholmfilmfestival.se/sites/default/files/styles/600x857/public/film_images/2017/${mySections[i].filmName.toLowerCase().split(' ').join('').replace(/[.,:!]/g, '')}.jpg">
+            <img src="${mySections[i].filmPosterImage.replace('[IMAGESIZE]', '600x857')}">
             <h3> ${mySections[i].filmName} </h3>
             <p> Director: ${mySections[i].filmDirector} </p> 
             <p> Section: ${mySections[i].sectionName} </p>
