@@ -22,7 +22,6 @@ function fetchFilms() {
             displayFilms(films);
             allFilms = films;
 
-
         })
 
         .catch(function (error) {
@@ -46,18 +45,19 @@ function fetchFilmDesc(id) {
             let info = " ";
             info +=
 
-    ` <div class="filmDescription" id = "${filmDesc.filmId}">
-        <h2> ${filmDesc.filmName} </h2>
-        <h3> ${filmDesc.sectionName} </h3>
-        <h4> ${filmDesc.filmDirector} </h4>
-        <h4> ${filmDesc.filmCountry_en} </h4>
-        <h4> <a href ="https://www.youtube.com/watch?v=${filmDesc.filmYoutubeId}">Trailer</a></h4>
-        
-        <p> ${filmDesc.filmDescription_en} </p> 
-           `
-        ;
-        
-        infoElement.innerHTML = info;
+                ` 
+        <div class="filmDescription" id = "${filmDesc.filmId}">
+            <h2> ${filmDesc.filmName} </h2>
+            <h3> ${filmDesc.sectionName} </h3>
+            <h4> Director: ${filmDesc.filmDirector} </h4>
+            <h4> Country: ${filmDesc.filmCountry_en} </h4>
+            <h4> <a href ="https://www.youtube.com/watch?v=${filmDesc.filmYoutubeId}">Trailer</a></h4>
+            <p> ${filmDesc.filmDescription_en} </p> 
+         </div> `
+
+            ;
+
+            infoElement.innerHTML = info;
 
         })
 
@@ -79,21 +79,17 @@ function displayFilms(allFilms) {
     let info = '';
     for (var i = 0; i < allFilms.length; i++) {
         let id = allFilms[i].filmId;
-        var str = "IMAGESIZE";
-        var res = str.replace("IMAGESIZE", "320x457");
-        //        <img src = "${allFilms[i].filmPosterImage}">
-        info +=
 
-        ` <div class="films" id = "${allFilms[i].filmId}">
+        info +=
+            `
+         <div class="films" id = "${allFilms[i].filmId}">
+            <img src = "http://www.stockholmfilmfestival.se/sites/default/files/styles/600x857/public/film_images/2017/${allFilms[i].filmName.toLowerCase().split(' ').join('').replace(/[.,:!´]/g, '')}.jpg">
             <h3> ${allFilms[i].filmName} </h3>
             <p> Director: ${allFilms[i].filmDirector} </p>
             <p> Section: ${allFilms[i].sectionName} </p> 
-        </div> `
-        
-        ;
-
+        </div> 
+        `;
         infoElement.innerHTML = info;
-
     }
 
 
@@ -109,25 +105,38 @@ showAllButton.addEventListener('click', function () {
 
         info +=
 
-            ` <div class="films" id = "${allFilms[i].filmId}">
-
+            `
+         <div class="films" id = "${allFilms[i].filmId}">
+             <img src = "http://www.stockholmfilmfestival.se/sites/default/files/styles/600x857/public/film_images/2017/${allFilms[i].filmName.toLowerCase().split(' ').join('').replace(/[.,:!]/g, '')}.jpg">
             <h3> ${allFilms[i].filmName} </h3>
             <p> Director: ${allFilms[i].filmDirector} </p>
             <p> Section: ${allFilms[i].sectionName} </p>
         </div>
        
     `;
-
         infoElement.innerHTML = info;
-
     }
 
 });
 
+//------ ENTER TO SEARCH ----- //
+input.addEventListener('keydown', function handleKeydown(e) {
+    var text = input.value;
+    let info = " ";
+    if (e.keyCode === 13) {
+        if (text !== '') {
+            searchFilm();
+            input.value = ' ';
+        }
+    }
+});
 
 // ----- SEARCH INPUT FOR MOVIE TITLE ---- //
 
-searchButton.addEventListener('click', function () {
+searchButton.addEventListener('click', searchFilm);
+
+function searchFilm() {
+
     const searchButton = document.getElementById('searchButton');
     let info = '';
     const inputValue = input.value;
@@ -138,7 +147,7 @@ searchButton.addEventListener('click', function () {
 
             info += `
         <div class="films" id = "${allFilms[i].filmId}">
-            
+            <img src = "http://www.stockholmfilmfestival.se/sites/default/files/styles/600x857/public/film_images/2017/${allFilms[i].filmName.toLowerCase().split(' ').join('').replace(/[.,:!]/g, '')}.jpg">
             <h3> ${allFilms[i].filmName} </h3>
             <p> Director: ${allFilms[i].filmDirector} </p> 
             <p> Section: ${allFilms[i].sectionName} </p>
@@ -146,11 +155,10 @@ searchButton.addEventListener('click', function () {
         </div>
         `;
             infoElement.innerHTML = info;
+
         }
     }
-
-});
-
+}
 
 
 
@@ -201,7 +209,7 @@ function getSection(section) {
         info += `
 
         <div class="films" id = "${mySections[i].filmId}">
-            
+            <img src = "http://www.stockholmfilmfestival.se/sites/default/files/styles/600x857/public/film_images/2017/${mySections[i].filmName.toLowerCase().split(' ').join('').replace(/[.,:!]/g, '')}.jpg">
             <h3> ${mySections[i].filmName} </h3>
             <p> Director: ${mySections[i].filmDirector} </p> 
             <p> Section: ${mySections[i].sectionName} </p>
