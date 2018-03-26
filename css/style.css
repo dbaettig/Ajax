@@ -83,7 +83,9 @@ h1{
     padding:20px;
 }
 
-
+h1{
+    font-size: 2.5em;
+}
 h2{
   font-family: 'Josefin Sans', sans-serif;
   border-bottom: 2px solid black;
@@ -92,6 +94,7 @@ h2{
 h3{
 font-family: 'Josefin Sans', sans-serif;
 font-size:2.3em;
+padding:10px;
     
 }
 
@@ -99,11 +102,13 @@ h4 {
     font-family: 'Josefin Sans', sans-serif;
 }
 p {
-    font-size:1.8em;
+    font-size:1.7em;
     font-family: 'Lato', sans-serif;
     line-height: 20px;
     line-height: 1.6;
+    
 }
+
 a{
 color:#DB4622;
 text-decoration: none;
@@ -127,7 +132,7 @@ button {
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     color: black;
-    font-size: 1.2em;
+    font-size: 1.5em;
 }
 
 button:focus {
