@@ -205,8 +205,6 @@ function getSection(section) {
             <h3> ${mySections[i].filmName} </h3>
             <p> Director: ${mySections[i].filmDirector} </p> 
             <p> Section: ${mySections[i].sectionName} </p>
-          
-
         </div>
         `;
 
