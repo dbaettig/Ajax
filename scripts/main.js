@@ -41,7 +41,7 @@ function fetchFilmDesc(id) {
         .then(function (filmDesc) {
             displayFilmDesc(filmDesc);
             allFilmDesc = filmDesc;
-
+console.log(filmDesc)
             let info = " ";
             info +=
 
@@ -80,7 +80,7 @@ function displayFilms(allFilms) {
     let info = '';
     for (var i = 0; i < allFilms.length; i++) {
         let id = allFilms[i].filmId;
-       
+      
         info +=
             `
          <div class="films" id = "${allFilms[i].filmId}">
@@ -237,3 +237,18 @@ infoElement.addEventListener('click', function (div) {
     }
 
 })
+
+//---SCROLL ---//
+
+
+function scrollTo(element) {
+  window.scroll({
+    behavior: 'smooth',
+    left: 0,
+    top: element.offsetTop
+  });
+}
+
+document.getElementById("scrollUp").addEventListener('click', () => {
+    scrollTo(document.getElementById("category"));
+});

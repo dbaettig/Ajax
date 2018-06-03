@@ -41,7 +41,7 @@
 
 
 
-.main {
+main {
     background-color: #F5F5F5;
     padding-bottom: 100px;
     margin-top: 50px;
@@ -207,6 +207,13 @@ button:focus {
     width: 20%;
     opacity: 0.7;
 }
+   #scrollUp{
+        background-color:transparent;
+        border:none;
+    }
+    #scrollUp img{
+        width:150px;
+    }
 
 footer{
     height:300px;
@@ -320,6 +327,10 @@ p {
     position: absolute;
     -webkit-animation: bounce 0.8s infinite;
 }
+     #scrollUp img{
+        width:50px;
+    }
+ 
   
 footer{
     height:200px;
