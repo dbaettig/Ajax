@@ -28,4 +28,6 @@ sätt att lösa saker på som inte var helt självklara i början.
 
 ## To Dos :bangbang:
 * Utöka informationen på sidan likt filmfestivalens egna sida, mer info om filmvisningar, event etc.
+* Ev Paginering
+* Error hantera
 
