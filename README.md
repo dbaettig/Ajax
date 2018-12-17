@@ -1,5 +1,5 @@
 # Async & API
-Daniela Baettig | [GitHub Pages]( https://dbaettig.github.io/JavaScript-AJAX/) | [GitHub Repository](https://github.com/dbaettig/stockholmfilmfestival-API)
+Daniela Baettig | [GitHub Pages]( https://dbaettig.github.io/StockholmsFilmFestival-API/) | [GitHub Repository](https://github.com/dbaettig/stockholmfilmfestival-API)
 
 ## Om mitt API
 Syftet med denna applikation är att kunna ta del av information kring filmerna på stockholms filmfestival 2017.
